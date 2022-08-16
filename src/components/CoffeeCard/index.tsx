@@ -23,16 +23,16 @@ export interface ICoffee {
 }
 
 interface ICoffeeProps {
-  coffee: ICoffee
+  item: ICoffee
 }
 
-export function CoffeeCard({ coffee }: ICoffeeProps) {
+export function CoffeeCard({ item }: ICoffeeProps) {
   const [quantity, setQuantity] = useState(1)
   const { addItemToCart } = useContext(CartItemsContext)
 
   function handleAddToCart() {
-    const novo = { ...coffee, quantity }
-    addItemToCart(novo)
+    const itemToAdd = { ...item, quantity }
+    addItemToCart(itemToAdd)
   }
 
   function handleDecrementValue() {
@@ -47,17 +47,17 @@ export function CoffeeCard({ coffee }: ICoffeeProps) {
 
   return (
     <CoffeeCardContent>
-      <img src={coffee.image} alt="" />
+      <img src={item.image} alt="" />
       <CoffeeTagWrapperContent>
-        {coffee.tags.map((tag) => {
+        {item.tags.map((tag) => {
           return <CoffeeTagContent key={tag}>{tag}</CoffeeTagContent>
         })}
       </CoffeeTagWrapperContent>
-      <h5>{coffee.name}</h5>
-      <p>{coffee.description}</p>
+      <h5>{item.name}</h5>
+      <p>{item.description}</p>
       <CoffeeActionsContent>
         <CoffeeActionsStartContent>
-          <span>{CurrencyFormat(coffee.price)}</span>
+          <span>{CurrencyFormat(item.price)}</span>
         </CoffeeActionsStartContent>
         <CoffeeActionsEndContent>
           <Quantity

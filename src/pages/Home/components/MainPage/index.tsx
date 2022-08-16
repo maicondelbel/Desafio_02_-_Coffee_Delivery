@@ -10,7 +10,7 @@ export function MainPage() {
         <h1>Nossos cafés</h1>
         <PageContentContainer>
           {coffees.map((coffee) => {
-            return <CoffeeCard key={coffee.id} coffee={coffee} />
+            return <CoffeeCard key={coffee.id} item={coffee} />
           })}
         </PageContentContainer>
       </LayoutContainer>

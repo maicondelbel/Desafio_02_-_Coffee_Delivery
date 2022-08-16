@@ -12,7 +12,7 @@ interface ICartItemsContext {
   cartTotalAmount: number
   order: IOrder | null
   clearCart: () => void
-  addItemToCart: (coffee: ICartItems) => void
+  addItemToCart: (selectedCartItem: ICartItems) => void
   removeItemFromCart: (itemId: number) => void
   decreaseQuantityOnCart: (itemId: number) => void
   increaseQuantityOnCart: (itemId: number) => void
@@ -54,25 +54,25 @@ export function CartItemsContextProvider({
     return total + cartItem.price * cartItem.quantity
   }, 0)
 
-  function addItemToCart(coffee: ICartItems) {
+  function addItemToCart(selectedCartItem: ICartItems) {
     const itemExistsOnCart = cartItems.find((cartItem) => {
-      return cartItem.id === coffee.id
+      return cartItem.id === selectedCartItem.id
     })
 
     if (itemExistsOnCart) {
       setCartItems(
         cartItems.map((cartItem) => {
-          if (cartItem.id === coffee.id) {
+          if (cartItem.id === selectedCartItem.id) {
             return {
               ...cartItem,
-              quantity: cartItem.quantity + coffee.quantity,
+              quantity: cartItem.quantity + selectedCartItem.quantity,
             }
           }
           return cartItem
         }),
       )
     } else {
-      setCartItems((state) => [...state, coffee])
+      setCartItems((state) => [...state, selectedCartItem])
     }
   }
 
