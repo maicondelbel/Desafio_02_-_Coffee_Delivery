@@ -1,55 +1,57 @@
 import { ICartItems } from '../../contexts/CartItemsContext'
 import { ActionsTypes } from './actions'
 
+import { produce } from 'immer'
+
 export function cartItemsReducer(state: ICartItems[], action: any) {
   switch (action.type) {
     case ActionsTypes.ADD_ITEM_TO_CART: {
-      const itemExistsOnCart = state.find((cartItem) => {
-        return cartItem.id === action.payload.selectedCartItem.id
-      })
-      if (itemExistsOnCart) {
-        return state.map((cartItem) => {
-          if (cartItem.id === action.payload.selectedCartItem.id) {
-            return {
-              ...cartItem,
-              quantity:
-                cartItem.quantity + action.payload.selectedCartItem.quantity,
-            }
-          }
-          return cartItem
+      return produce(state, (draft) => {
+        const cartItemExists = state.findIndex((cartItem) => {
+          return cartItem.id === action.payload.selectedCartItem.id
         })
-      } else {
-        return [...state, action.payload.selectedCartItem]
-      }
+        if (cartItemExists >= 0) {
+          draft[cartItemExists].quantity +=
+            action.payload.selectedCartItem.quantity
+        } else {
+          draft.push(action.payload.selectedCartItem)
+        }
+      })
     }
 
     case ActionsTypes.REMOVE_ITEM_FROM_CART: {
-      const newCartItems = state.filter((cartItem) => {
-        return cartItem.id !== action.payload.itemId
+      return produce(state, (draft) => {
+        const cartItemExists = state.findIndex((cartItem) => {
+          return cartItem.id === action.payload.itemId
+        })
+        if (cartItemExists >= 0) {
+          draft.splice(cartItemExists, 1)
+        }
       })
-      return newCartItems
     }
 
     case ActionsTypes.DECREASE_CART_ITEM_QUANTITY: {
-      const newCartItems = state.map((cartItem) => {
-        if (cartItem.id === action.payload.itemId) {
-          if (cartItem.quantity > 1) {
-            return { ...cartItem, quantity: cartItem.quantity - 1 }
+      return produce(state, (draft) => {
+        const cartItemExists = state.findIndex((cartItem) => {
+          return cartItem.id === action.payload.itemId
+        })
+        if (cartItemExists >= 0) {
+          if (draft[cartItemExists].quantity > 1) {
+            draft[cartItemExists].quantity -= 1
           }
         }
-        return cartItem
       })
-      return newCartItems
     }
 
     case ActionsTypes.INCREASE_CART_ITEM_QUANTITY: {
-      const newCartItems = state.map((cartItem) => {
-        if (cartItem.id === action.payload.itemId) {
-          return { ...cartItem, quantity: cartItem.quantity + 1 }
+      return produce(state, (draft) => {
+        const cartItemExists = state.findIndex((cartItem) => {
+          return cartItem.id === action.payload.itemId
+        })
+        if (cartItemExists >= 0) {
+          draft[cartItemExists].quantity += 1
         }
-        return cartItem
       })
-      return newCartItems
     }
 
     case ActionsTypes.CLEAR_CART: {
