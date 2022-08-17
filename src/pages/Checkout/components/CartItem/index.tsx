@@ -18,19 +18,22 @@ export interface ICartItemProps {
 }
 
 export function CartItem({ item }: ICartItemProps) {
-  const { removeItemFromCart, decreaseQuantityOnCart, increaseQuantityOnCart } =
-    useContext(CartItemsContext)
+  const {
+    removeItemFromCart,
+    decreaseCartItemQuantity,
+    increaseCartItemQuantity,
+  } = useContext(CartItemsContext)
 
   function handleRemoveCartItem() {
     removeItemFromCart(item.id)
   }
 
   function handleDecreaseQuantityOnCart() {
-    decreaseQuantityOnCart(item.id)
+    decreaseCartItemQuantity(item.id)
   }
 
   function handleIncreaseQuantityOnCart() {
-    increaseQuantityOnCart(item.id)
+    increaseCartItemQuantity(item.id)
   }
 
   return (

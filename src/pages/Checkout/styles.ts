@@ -11,8 +11,7 @@ export const PageContentContainer = styled.main`
 `
 
 export const LeftSideContainer = styled.div`
-  width: 40rem;
-  flex: 1;
+  flex: 1 40rem;
   > h3 {
     color: ${(props) => props.theme['--base---subtitle']};
     font-size: ${(props) => props.theme['--title---title--x-s']};
@@ -21,7 +20,7 @@ export const LeftSideContainer = styled.div`
 `
 
 export const RightSideContainer = styled.div`
-  flex: 1;
+  flex: 1 28rem;
   > h3 {
     color: ${(props) => props.theme['--base---subtitle']};
     font-size: ${(props) => props.theme['--title---title--x-s']};
@@ -57,6 +56,7 @@ export const PaymentMethodWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
+  flex-wrap: wrap;
 
   input {
     display: none;

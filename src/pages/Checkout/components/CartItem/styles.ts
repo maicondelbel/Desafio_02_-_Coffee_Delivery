@@ -3,9 +3,9 @@ import styled from 'styled-components'
 export const CartItemWrapperContainer = styled.div`
   display: flex;
   gap: 1.25rem;
-  width: 23rem;
-  flex: 1;
+  flex: 1 23rem;
   margin-bottom: 1.5rem;
+  justify-content: center;
 
   & + & {
     padding-top: 1.5rem;
@@ -23,6 +23,7 @@ export const CartItemMiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex: 1;
 
   span {
     line-height: 1.3;
@@ -32,6 +33,7 @@ export const CartItemMiddleContainer = styled.div`
 
   > div {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
 
     > button {
@@ -56,7 +58,7 @@ export const CartItemMiddleContainer = styled.div`
 `
 
 export const CartItemEndContainer = styled.div`
-  width: 100%;
+  /* width: 100%; */
   text-align: end;
 
   span {

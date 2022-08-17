@@ -1,6 +1,20 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { ICoffee } from '../components/CoffeeCard'
 import { IOrder } from '../pages/Checkout'
+import {
+  addItemToCartAction,
+  clearCartAction,
+  decreaseCartItemQuantityAction,
+  increaseCartItemQuantityAction,
+  removeItemFromCartAction,
+} from '../reducers/cartItems/actions'
+import { cartItemsReducer } from '../reducers/cartItems/reducers'
 
 export interface ICartItems extends ICoffee {
   quantity: number
@@ -14,8 +28,8 @@ interface ICartItemsContext {
   clearCart: () => void
   addItemToCart: (selectedCartItem: ICartItems) => void
   removeItemFromCart: (itemId: number) => void
-  decreaseQuantityOnCart: (itemId: number) => void
-  increaseQuantityOnCart: (itemId: number) => void
+  decreaseCartItemQuantity: (itemId: number) => void
+  increaseCartItemQuantity: (itemId: number) => void
   placeOrder: (order: IOrder) => void
 }
 
@@ -38,9 +52,11 @@ export function CartItemsContextProvider({
     return []
   }
 
-  const [cartItems, setCartItems] = useState<ICartItems[]>(
+  const [cartItems, dispatch] = useReducer(
+    cartItemsReducer,
     getCartItemsFromLocalStorage(),
   )
+
   const [order, setOrder] = useState<IOrder | null>(null)
 
   useEffect(() => {
@@ -55,61 +71,23 @@ export function CartItemsContextProvider({
   }, 0)
 
   function addItemToCart(selectedCartItem: ICartItems) {
-    const itemExistsOnCart = cartItems.find((cartItem) => {
-      return cartItem.id === selectedCartItem.id
-    })
-
-    if (itemExistsOnCart) {
-      setCartItems(
-        cartItems.map((cartItem) => {
-          if (cartItem.id === selectedCartItem.id) {
-            return {
-              ...cartItem,
-              quantity: cartItem.quantity + selectedCartItem.quantity,
-            }
-          }
-          return cartItem
-        }),
-      )
-    } else {
-      setCartItems((state) => [...state, selectedCartItem])
-    }
+    dispatch(addItemToCartAction(selectedCartItem))
   }
 
   function removeItemFromCart(itemId: number) {
-    const newCartItems = cartItems.filter((cartItem) => {
-      return cartItem.id !== itemId
-    })
-
-    setCartItems(newCartItems)
+    dispatch(removeItemFromCartAction(itemId))
   }
 
-  function decreaseQuantityOnCart(itemId: number) {
-    const newCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === itemId) {
-        if (cartItem.quantity > 1) {
-          return { ...cartItem, quantity: cartItem.quantity - 1 }
-        }
-      }
-      return cartItem
-    })
-
-    setCartItems(newCartItems)
+  function decreaseCartItemQuantity(itemId: number) {
+    dispatch(decreaseCartItemQuantityAction(itemId))
   }
 
-  function increaseQuantityOnCart(itemId: number) {
-    const newCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === itemId) {
-        return { ...cartItem, quantity: cartItem.quantity + 1 }
-      }
-      return cartItem
-    })
-
-    setCartItems(newCartItems)
+  function increaseCartItemQuantity(itemId: number) {
+    dispatch(increaseCartItemQuantityAction(itemId))
   }
 
   function clearCart() {
-    setCartItems([])
+    dispatch(clearCartAction())
   }
 
   function placeOrder(placeOrderData: IOrder) {
@@ -123,8 +101,8 @@ export function CartItemsContextProvider({
         cartItems,
         numbersOfItensOnCart,
         removeItemFromCart,
-        decreaseQuantityOnCart,
-        increaseQuantityOnCart,
+        decreaseCartItemQuantity,
+        increaseCartItemQuantity,
         cartTotalAmount,
         clearCart,
         placeOrder,
