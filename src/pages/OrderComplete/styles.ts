@@ -8,7 +8,8 @@ export const PageContentContainer = styled.main`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 6.375rem;
 `
 
 export const LeftSideContainer = styled.div`

@@ -32,7 +32,7 @@ export function OrderComplete() {
     money: 'Dinheiro',
   }
 
-  if (!order) return
+  if (!order) return <></>
 
   return (
     <OrderCompleteContainer>

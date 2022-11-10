@@ -4,6 +4,7 @@ import bannerBackground from '../../../../assets/banner-background.png'
 export const BannerContainer = styled.section`
   background-image: url(${bannerBackground});
   background-size: cover;
+  background-position: bottom;
 `
 export const BannerWrapperContainer = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ export const BannerWrapperContainer = styled.div`
   flex-wrap: wrap-reverse;
   flex: 1;
   padding: 0 1rem;
+  height: 70vh;
 `
 
 export const BannerInfoContainer = styled.div`

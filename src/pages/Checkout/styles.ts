@@ -11,7 +11,7 @@ export const PageContentContainer = styled.main`
 `
 
 export const LeftSideContainer = styled.div`
-  flex: 1 40rem;
+  flex: 1 1 40rem;
   > h3 {
     color: ${(props) => props.theme['--base---subtitle']};
     font-size: ${(props) => props.theme['--title---title--x-s']};
@@ -58,6 +58,10 @@ export const PaymentMethodWrapper = styled.div`
   gap: 0.75rem;
   flex-wrap: wrap;
 
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+
   input {
     display: none;
   }
@@ -78,7 +82,6 @@ export const PaymentMethodWrapper = styled.div`
     color: ${(props) => props.theme['--base---text']};
     font-size: ${(props) => props.theme['--components---button--s']};
     text-transform: uppercase;
-    width: 11rem;
     cursor: pointer;
   }
 
@@ -144,6 +147,17 @@ export const BillingFormInputContainer = styled.div`
 
   .uf {
     width: 3.75rem;
+  }
+
+  @media (max-width: 767px) {
+    .form-line {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-line input {
+      width: 100%;
+    }
   }
 `
 

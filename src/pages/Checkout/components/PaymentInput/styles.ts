@@ -31,7 +31,7 @@ export const PaymentLabelContainer = styled.label`
   color: ${(props) => props.theme['--base---text']};
   font-size: ${(props) => props.theme['--components---button--s']};
   text-transform: uppercase;
-  flex: 1 11rem;
+  flex: 1;
   cursor: pointer;
 
   & svg {
