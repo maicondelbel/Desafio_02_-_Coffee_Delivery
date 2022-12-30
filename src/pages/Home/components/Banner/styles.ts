@@ -17,7 +17,7 @@ export const BannerWrapperContainer = styled.div`
   flex-wrap: wrap-reverse;
   flex: 1;
   padding: 0 1rem;
-  height: 70vh;
+  min-height: 70vh;
 `
 
 export const BannerInfoContainer = styled.div`
