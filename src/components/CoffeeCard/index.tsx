@@ -47,29 +47,31 @@ export function CoffeeCard({ item }: ICoffeeProps) {
 
   return (
     <CoffeeCardContent>
-      <img src={item.image} alt="" />
-      <CoffeeTagWrapperContent>
-        {item.tags.map((tag) => {
-          return <CoffeeTagContent key={tag}>{tag}</CoffeeTagContent>
-        })}
-      </CoffeeTagWrapperContent>
-      <h5>{item.name}</h5>
-      <p>{item.description}</p>
-      <CoffeeActionsContent>
-        <CoffeeActionsStartContent>
-          <span>{CurrencyFormat(item.price)}</span>
-        </CoffeeActionsStartContent>
-        <CoffeeActionsEndContent>
-          <Quantity
-            decrementValue={handleDecrementValue}
-            incrementValue={handleIncrementValue}
-            quantity={quantity}
-          />
-          <AddToCartButtonContainer onClick={handleAddToCart}>
-            <ShoppingCart size={22} weight="fill" />
-          </AddToCartButtonContainer>
-        </CoffeeActionsEndContent>
-      </CoffeeActionsContent>
+      <div>
+        <img src={item.image} alt="" />
+        <CoffeeTagWrapperContent>
+          {item.tags.map((tag) => {
+            return <CoffeeTagContent key={tag}>{tag}</CoffeeTagContent>
+          })}
+        </CoffeeTagWrapperContent>
+        <h5>{item.name}</h5>
+        <p>{item.description}</p>
+        <CoffeeActionsContent>
+          <CoffeeActionsStartContent>
+            <span>{CurrencyFormat(item.price)}</span>
+          </CoffeeActionsStartContent>
+          <CoffeeActionsEndContent>
+            <Quantity
+              decrementValue={handleDecrementValue}
+              incrementValue={handleIncrementValue}
+              quantity={quantity}
+            />
+            <AddToCartButtonContainer onClick={handleAddToCart}>
+              <ShoppingCart size={22} weight="fill" />
+            </AddToCartButtonContainer>
+          </CoffeeActionsEndContent>
+        </CoffeeActionsContent>
+      </div>
     </CoffeeCardContent>
   )
 }

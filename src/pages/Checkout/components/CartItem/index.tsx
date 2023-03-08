@@ -15,9 +15,10 @@ import { useContext } from 'react'
 
 export interface ICartItemProps {
   item: ICartItems
+  size?: 'normal' | 'small'
 }
 
-export function CartItem({ item }: ICartItemProps) {
+export function CartItem({ item, size }: ICartItemProps) {
   const {
     removeItemFromCart,
     decreaseCartItemQuantity,
@@ -45,6 +46,7 @@ export function CartItem({ item }: ICartItemProps) {
         <span>{item.name}</span>
         <div>
           <Quantity
+            size={size}
             quantity={item.quantity}
             decrementValue={handleDecreaseQuantityOnCart}
             incrementValue={handleIncreaseQuantityOnCart}

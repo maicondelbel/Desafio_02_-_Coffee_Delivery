@@ -6,10 +6,14 @@ export const OrderCompleteContainer = styled.section`
 
 export const PageContentContainer = styled.main`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: flex-end;
-  justify-content: center;
-  gap: 6.375rem;
+  gap: 2.375rem;
+
+  @media (max-width: 767px) {
+    flex-flow: column;
+    align-items: center;
+  }
 `
 
 export const LeftSideContainer = styled.div`

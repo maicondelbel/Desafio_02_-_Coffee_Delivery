@@ -132,11 +132,13 @@ export function Checkout() {
                   <div className="form-line">
                     <Input
                       placeholder="Bairro"
+                      className="neighborhood"
                       {...register('neighborhood', { required: true })}
                       hasError={!!errors.neighborhood}
                     />
                     <Input
                       placeholder="Cidade"
+                      className="city"
                       {...register('city', { required: true })}
                       hasError={!!errors.city}
                     />
@@ -205,8 +207,11 @@ export function Checkout() {
             <RightSideContainer>
               <h3>Cafés selecionados</h3>
               <CartItensContainer>
+                {cartItems.length === 0 && <p>Nenhum item selecionado</p>}
                 {cartItems.map((cartItem) => {
-                  return <CartItem key={cartItem.id} item={cartItem} />
+                  return (
+                    <CartItem key={cartItem.id} item={cartItem} size="small" />
+                  )
                 })}
                 <SeparatorContainer />
                 <ConfirmationOrder

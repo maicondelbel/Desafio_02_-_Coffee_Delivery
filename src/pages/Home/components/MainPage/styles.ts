@@ -16,9 +16,21 @@ export const MainPageContainer = styled.section`
   }
 `
 export const PageContentContainer = styled.main`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 2rem;
   row-gap: 3.5rem;
-  justify-content: space-evenly;
+
+  @media (max-width: 1170px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 880px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 592px) {
+    grid-template-columns: 1fr;
+  }
 `

@@ -11,13 +11,16 @@ export const BannerWrapperContainer = styled.div`
   align-items: center;
   justify-content: center;
   column-gap: 3.5rem;
-  min-height: 34rem;
+
   margin-left: auto;
   margin-right: auto;
-  flex-wrap: wrap-reverse;
+
   flex: 1;
-  padding: 0 1rem;
   min-height: 70vh;
+
+  @media (max-width: 767px) {
+    flex-flow: column-reverse;
+  }
 `
 
 export const BannerInfoContainer = styled.div`
@@ -25,6 +28,11 @@ export const BannerInfoContainer = styled.div`
   flex-direction: column;
   max-width: 37rem;
   flex-wrap: wrap;
+  flex: 1;
+
+  @media (max-width: 767px) {
+    min-width: 100%;
+  }
 
   h1 {
     font-family: ${(props) => props.theme['--font---title']};
@@ -44,7 +52,11 @@ export const BannerInfoContainer = styled.div`
 `
 
 export const BannerImageContainer = styled.div`
+  flex: 1;
+  padding: 2rem 0;
+
   img {
+    max-width: 476px;
     width: 100%;
     height: auto;
   }
@@ -56,6 +68,10 @@ export const IconListWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   row-gap: 1.25rem;
   column-gap: 0.125rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const IconListItem = styled.div`

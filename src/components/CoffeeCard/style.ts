@@ -2,15 +2,21 @@ import styled from 'styled-components'
 
 export const CoffeeCardContent = styled.article`
   display: flex;
+  align-items: center;
   flex-direction: column;
   padding: 0 1.5rem 1.25rem 1.5rem;
   background-color: ${(props) => props.theme['--base---card']};
   border-radius: 6px;
   border-top-right-radius: 36px;
   border-bottom-left-radius: 36px;
-  width: 256px;
+  width: 100%;
+
+  & > div {
+    max-width: 256px;
+  }
 
   img {
+    display: block;
     width: 7.5rem;
     height: 7.5rem;
     margin-top: -1.25rem;

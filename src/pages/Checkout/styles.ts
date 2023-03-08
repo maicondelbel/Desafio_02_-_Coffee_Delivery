@@ -5,13 +5,17 @@ export const CheckoutContainer = styled.section`
 `
 export const PageContentContainer = styled.main`
   display: flex;
-  flex-wrap: wrap;
   column-gap: 2rem;
   row-gap: 3.5rem;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `
 
 export const LeftSideContainer = styled.div`
-  flex: 1 1 40rem;
+  flex: 1 40rem;
+
   > h3 {
     color: ${(props) => props.theme['--base---subtitle']};
     font-size: ${(props) => props.theme['--title---title--x-s']};
@@ -20,7 +24,8 @@ export const LeftSideContainer = styled.div`
 `
 
 export const RightSideContainer = styled.div`
-  flex: 1 28rem;
+  min-width: 21rem;
+
   > h3 {
     color: ${(props) => props.theme['--base---subtitle']};
     font-size: ${(props) => props.theme['--title---title--x-s']};
@@ -35,6 +40,12 @@ export const CartItensContainer = styled.div`
   border-radius: 6px;
   border-top-right-radius: 44px;
   border-bottom-left-radius: 44px;
+
+  p {
+    text-align: center;
+    color: ${(props) => props.theme['--base---text']};
+    font-size: ${(props) => props.theme['--text---regular--s']};
+  }
 `
 
 export const BillingFormContainer = styled.div`
@@ -137,19 +148,21 @@ export const BillingFormInputContainer = styled.div`
     column-gap: 0.75rem;
   }
 
-  .cep {
+  .cep,
+  .number,
+  .neighborhood {
     width: 12.5rem;
   }
 
-  .number {
-    width: 12.5rem;
+  .city {
+    flex: 1;
   }
 
   .uf {
     width: 3.75rem;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 992px) {
     .form-line {
       display: flex;
       flex-direction: column;

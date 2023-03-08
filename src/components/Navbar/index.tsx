@@ -2,12 +2,12 @@ import {
   BadgeContainer,
   CartButtonContainer,
   NavbarContainer,
+  NavbarWrapper,
   PlaceContainer,
 } from './styles'
 import logo from '../../assets/coffee-delivery-logo.svg'
 import { NavLink } from 'react-router-dom'
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import { LayoutContainer } from './../../layouts/styles'
 import { useContext } from 'react'
 import { CartItemsContext } from '../../contexts/CartItemsContext'
 
@@ -15,13 +15,11 @@ export function Navbar() {
   const { numbersOfItensOnCart } = useContext(CartItemsContext)
   return (
     <NavbarContainer>
-      <LayoutContainer>
-        <div className="start">
-          <NavLink to="/">
-            <img src={logo} alt="Coffee Delivery Logo" />
-          </NavLink>
-        </div>
-        <div className="end">
+      <NavbarWrapper>
+        <NavLink to="/">
+          <img src={logo} alt="Coffee Delivery Logo" />
+        </NavLink>
+        <div>
           <PlaceContainer>
             <MapPin size={22} weight="fill" />
             <span>Limeira - SP</span>
@@ -35,7 +33,7 @@ export function Navbar() {
             </CartButtonContainer>
           </NavLink>
         </div>
-      </LayoutContainer>
+      </NavbarWrapper>
     </NavbarContainer>
   )
 }

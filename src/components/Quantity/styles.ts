@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 
-export const QuantityContainer = styled.div`
+interface IQuantityContainer {
+  size?: 'small' | 'normal'
+}
+
+export const QuantityContainer = styled.div<IQuantityContainer>`
   background: ${(props) => props.theme['--base---button']};
   padding: 0 0.25rem;
-  height: 2.375rem;
+  height: ${(props) => (props.size === 'normal' ? '2.375rem' : '2rem')};
   display: flex;
   align-items: center;
   justify-content: space-evenly;

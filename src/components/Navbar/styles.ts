@@ -6,21 +6,24 @@ export const NavbarContainer = styled.header`
   top: 0;
   left: 0;
   z-index: 5;
+`
+export const NavbarWrapper = styled.div`
+  max-width: 73rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6.5rem;
 
-  > div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 6.5rem;
-    padding: 0 15px;
-  }
-
-  .end {
+  & > div {
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
 `
+
 export const PlaceContainer = styled.div`
   display: flex;
   align-items: center;
