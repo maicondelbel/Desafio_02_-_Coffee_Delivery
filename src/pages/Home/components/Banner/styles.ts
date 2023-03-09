@@ -3,7 +3,7 @@ import bannerBackground from '../../../../assets/banner-background.png'
 
 export const BannerContainer = styled.section`
   background-image: url(${bannerBackground});
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: bottom;
 `
 export const BannerWrapperContainer = styled.div`
@@ -11,12 +11,10 @@ export const BannerWrapperContainer = styled.div`
   align-items: center;
   justify-content: center;
   column-gap: 3.5rem;
-
   margin-left: auto;
   margin-right: auto;
-
   flex: 1;
-  min-height: 70vh;
+  min-height: 34rem;
 
   @media (max-width: 767px) {
     flex-flow: column-reverse;
@@ -54,6 +52,7 @@ export const BannerInfoContainer = styled.div`
 export const BannerImageContainer = styled.div`
   flex: 1;
   padding: 2rem 0;
+  max-width: 30rem;
 
   img {
     max-width: 476px;

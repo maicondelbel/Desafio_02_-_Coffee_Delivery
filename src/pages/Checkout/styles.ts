@@ -15,6 +15,7 @@ export const PageContentContainer = styled.main`
 
 export const LeftSideContainer = styled.div`
   flex: 1 40rem;
+  max-width: 40rem;
 
   > h3 {
     color: ${(props) => props.theme['--base---subtitle']};
@@ -24,6 +25,7 @@ export const LeftSideContainer = styled.div`
 `
 
 export const RightSideContainer = styled.div`
+  flex: 1;
   min-width: 21rem;
 
   > h3 {
